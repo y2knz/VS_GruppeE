@@ -8,11 +8,12 @@ import java.io.IOException;
 
 public class SyslogServer {
 
-    private static final int SYSLOG_PORT = 514;
-    private static final int DISCOVERY_PORT = 8888;
-    private static final int MAX_LENGTH = 1024; 
+    private static final int SYSLOG_PORT = 514; //Syslog standard port: 514
+    private static final int DISCOVERY_PORT = 8888; //activity discovery port: 8888
+    private static final int MAX_LENGTH = 1024; //maximale laenge nach rfc 5424
 
     public static void main(String[] args) {
+    	//Startet die beiden threads für discovery und syslog server
         new Thread(SyslogServer::runSyslogServer).start();
         new Thread(SyslogServer::runDiscoveryServer).start();
     }
@@ -38,7 +39,7 @@ public class SyslogServer {
     private static void runDiscoveryServer() {
         try (DatagramSocket socket = new DatagramSocket(DISCOVERY_PORT)) {
         	System.out.println("Discovery Server started");
-            byte[] buffer = new byte[0];  // Empty response for discovery
+            byte[] buffer = new byte[0]; 
             while (true) {
                 DatagramPacket packet = new DatagramPacket(new byte[MAX_LENGTH], MAX_LENGTH);
                 socket.receive(packet);
