@@ -11,7 +11,7 @@ import test_1.SyslogMessage.TextMessage;
 
 public class MainTest {
 	
-	private static final int SYSLOG_PORT = 8888; // Syslog standard port
+	private static final int SYSLOG_PORT = 514; // Syslog standard port
     private static final int MAX_MESSAGE_LENGTH = 1024; // Max length of syslog message
 
     public static void sendMessage(String hostname, String appName, String messageText) {
