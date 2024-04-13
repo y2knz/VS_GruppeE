@@ -20,19 +20,19 @@ public class SyslogServer {
 
     private static void runSyslogServer() {
         try (DatagramSocket socket = new DatagramSocket(SYSLOG_PORT)) {
-        	System.out.println("Syslog Server started");
+        	System.out.println("Syslog Server gestartet");
             byte[] buffer = new byte[MAX_LENGTH];
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
 
             while (true) {
                 socket.receive(packet);
                 String message = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Received from " + packet.getAddress() + ": " + message);
+                System.out.println("Erhalten von " + packet.getAddress() + ": " + message);
             }
         } catch (SocketException e) {
-            System.err.println("Socket exception in syslog server: " + e.getMessage());
+            System.err.println("Syslog socket exception: " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("IO exception in syslog server: " + e.getMessage());
+            System.err.println("Syslog IO exception: " + e.getMessage());
         }
     }
 
@@ -48,9 +48,9 @@ public class SyslogServer {
                 System.out.println("Discovery response sent to " + packet.getAddress());
             }
         } catch (SocketException e) {
-            System.err.println("Socket exception in discovery server: " + e.getMessage());
+            System.err.println("Discovery socket exception: " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("IO exception in discovery server: " + e.getMessage());
+            System.err.println("Discovery IO exception: " + e.getMessage());
         }
     }
 }
