@@ -13,16 +13,16 @@ public class SyslogServer {
     private static final int MAX_LENGTH = 1024; //maximale laenge nach rfc 5424
 
     public static void main(String[] args) {
-    	//Startet die beiden threads f�r discovery und syslog server
+    	//Startet die beiden threads fuer discovery und syslog server
         new Thread(SyslogServer::runSyslogServer).start();
         new Thread(SyslogServer::runDiscoveryServer).start();
     }
 
     private static void runSyslogServer() {
-    	//Socket öffnen für den Syslog Port
+    	//Socket oeffnen für den Syslog Port
         try (DatagramSocket socket = new DatagramSocket(SYSLOG_PORT)) {
         	System.out.println("Syslog Server gestartet");
-        	//Max größe der Nachricht
+        	//Max groesse der Nachricht
             byte[] buffer = new byte[MAX_LENGTH];
             //Zu empfangendes Packet
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
@@ -41,7 +41,7 @@ public class SyslogServer {
     }
 
     private static void runDiscoveryServer() {
-    	//Socket öffnen für den Discovery Port
+    	//Socket oeffnen fuer den Discovery Port
         try (DatagramSocket socket = new DatagramSocket(DISCOVERY_PORT)) {
         	System.out.println("Discovery Server started");
             byte[] buffer = new byte[0]; 
