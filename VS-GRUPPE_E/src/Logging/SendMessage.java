@@ -8,8 +8,7 @@ import java.net.InetAddress;
 public class SendMessage {
 	
 	private static final int SYSLOG_PORT = 514; //Syslog standard port: 514
-    private static final int MAX_MESSAGE_LENGTH = 1024; //Max message length for syslog
-
+    
     public static void sendMessage(String hostname, String appName, String messageText) {
         try {
         	
